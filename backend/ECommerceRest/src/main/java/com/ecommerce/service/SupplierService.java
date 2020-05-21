@@ -4,26 +4,18 @@ import com.ecommerce.dao.SupplierDao;
 import com.ecommerce.entity.Supplier;
 import java.util.List;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 
-@Transactional
-public class SupplierService {
-    @PersistenceContext
-    EntityManager entityManager;
+public class SupplierService extends AbstractService{
     
     @Inject
     SupplierDao supplierDao;
 
     public Supplier createSupplier(Supplier supplier) {
-        entityManager.persist(supplier);
-        return supplier;    
+        return  (Supplier) create(supplier);    
     }
 
     public Supplier updateSupplier(Supplier supplier) {
-        entityManager.merge(supplier);
-        return supplier;
+        return (Supplier) update(supplier);
     }
 
     public Supplier findSupplierById(Long id) {
@@ -33,5 +25,4 @@ public class SupplierService {
     public List<Supplier> getSuppliers() {
         return supplierDao.getSuppliers(entityManager);
     }
-       
 }

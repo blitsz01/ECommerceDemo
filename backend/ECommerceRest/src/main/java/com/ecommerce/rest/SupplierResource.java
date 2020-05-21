@@ -1,7 +1,7 @@
 package com.ecommerce.rest;
 
-import com.ecommerce.entity.Product;
 import com.ecommerce.entity.Supplier;
+import com.ecommerce.service.ProductService;
 import com.ecommerce.service.SupplierService;
 import java.util.List;
 import javax.inject.Inject;
@@ -18,14 +18,17 @@ import javax.ws.rs.core.Response;
 @Path("supplier")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class SupplierRest {
+public class SupplierResource {
     
     @Inject
     SupplierService supplierService;
     
+    @Inject
+    ProductService productService;
+    
     @Path("new")
     @POST
-    public Response createProduct(Supplier supplier){
+    public Response createSupplier(Supplier supplier){
         //api/v1/supplier/new
         supplierService.createSupplier(supplier);
         return Response.ok(supplier).build();
@@ -33,7 +36,7 @@ public class SupplierRest {
     
     @Path("update")
     @PUT
-    public Response updateProduct(Supplier supplier){
+    public Response updateSupplier(Supplier supplier){
         //api/v1/supplier/update
         supplierService.updateSupplier(supplier);
         return Response.ok(supplier).build();
@@ -43,12 +46,15 @@ public class SupplierRest {
     @GET
     public Supplier getSupplier(@PathParam("id") Long id){
         //api/v1/supplier/{id}
+       /* Supplier supplier = null;
+        supplier = supplierService.findSupplierById(id);
+        supplier.setProductList(productService.getProductsBySupplier());*/
         return supplierService.findSupplierById(id);
     }
     
     @Path("list")
     @GET
-    public List<Supplier> getProducts(){
+    public List<Supplier> getSuppliers(){
         //api/v1/supplier/list
         return supplierService.getSuppliers();
     }

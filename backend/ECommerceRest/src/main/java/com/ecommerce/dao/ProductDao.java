@@ -11,5 +11,4 @@ public class ProductDao {
     public List<Product> getProducts(EntityManager entityManager){
         return entityManager.createQuery("SELECT p from Product p", Product.class).getResultList();
     }
-    
 }
