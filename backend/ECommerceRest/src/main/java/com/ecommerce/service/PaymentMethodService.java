@@ -2,6 +2,7 @@ package com.ecommerce.service;
 
 import com.ecommerce.dao.PaymentMethodDao;
 import com.ecommerce.entity.PaymentMethod;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -15,6 +16,7 @@ public class PaymentMethodService extends AbstractService{
     }
     
     public PaymentMethod updatePaymentMethod(PaymentMethod paymentMethod){
+        paymentMethod.setUpdatedOn(LocalDateTime.now());
         return (PaymentMethod) update(paymentMethod);
     }
     

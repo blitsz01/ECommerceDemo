@@ -2,6 +2,7 @@ package com.ecommerce.service;
 
 import com.ecommerce.dao.ProductDao;
 import com.ecommerce.entity.Product;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -15,6 +16,7 @@ public class ProductService extends AbstractService{
     }
     
     public Product updateProduct(Product product){
+        product.setUpdatedOn(LocalDateTime.now());
         return (Product) update(product);
     }
     
@@ -24,6 +26,10 @@ public class ProductService extends AbstractService{
     
     public List<Product> getProducts(){
         return productDao.getProducts(entityManager);
+    }
+    
+    public List<Product> getProductsBySupplier(Long supplierId){
+        return productDao.findProductsBySupplier(entityManager, supplierId);
     }
 
 }

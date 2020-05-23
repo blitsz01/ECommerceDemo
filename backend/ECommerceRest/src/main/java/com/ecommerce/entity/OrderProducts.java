@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.Data;
@@ -21,8 +22,14 @@ public class OrderProducts extends AbstractEntity{
     private String comments;
     
     @NotNull
+    @NotEmpty(message = "Quantity cannot be empty")
     @Column(name="QUANTITY", nullable=false)
     private int quantity;
+    
+    @NotNull
+    @NotEmpty(message = "Quantity cannot be empty")
+    @Column(name="TOTAL_PRICE", nullable=false)
+    private double totalPrice;
     
     @NotNull
     @JoinColumn(name="CUST_ORDER_ID", nullable=false)

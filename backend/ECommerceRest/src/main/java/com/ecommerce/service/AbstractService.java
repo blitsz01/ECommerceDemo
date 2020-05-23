@@ -1,5 +1,6 @@
 package com.ecommerce.service;
 
+import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -7,6 +8,7 @@ import lombok.NonNull;
 
 @Transactional
 public abstract class AbstractService<T> {
+    @Produces
     @PersistenceContext
     protected EntityManager entityManager;
     

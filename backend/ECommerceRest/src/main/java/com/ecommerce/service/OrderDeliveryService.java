@@ -2,6 +2,7 @@ package com.ecommerce.service;
 
 import com.ecommerce.dao.OrderDeliveryDao;
 import com.ecommerce.entity.OrderDelivery;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -15,6 +16,7 @@ public class OrderDeliveryService extends AbstractService{
     }
     
     public OrderDelivery updateOrderDelivery(OrderDelivery orderDelivery){
+        orderDelivery.setUpdatedOn(LocalDateTime.now());
         return (OrderDelivery) update(orderDelivery);
     }
     

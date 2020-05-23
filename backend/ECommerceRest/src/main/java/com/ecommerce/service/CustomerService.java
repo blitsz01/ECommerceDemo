@@ -2,6 +2,7 @@ package com.ecommerce.service;
 
 import com.ecommerce.dao.CustomerDao;
 import com.ecommerce.entity.Customer;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -15,6 +16,7 @@ public class CustomerService extends AbstractService{
     }
     
     public Customer updateCustomer(Customer customer){
+        customer.setUpdatedOn(LocalDateTime.now());
         return (Customer) update(customer);
     }
     

@@ -32,6 +32,7 @@ public abstract class AbstractEntity implements Serializable {
     @PrePersist
     private void init(){
         setCreatedOn(LocalDateTime.now());
+        setUpdatedOn(LocalDateTime.now());
         setDeleteFlag(Boolean.FALSE);
     }
   
