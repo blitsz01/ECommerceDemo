@@ -43,6 +43,7 @@ com\ecommerce\entity\Address.class
 com\ecommerce\service\OrderProductsService.class
 com\ecommerce\resource\UsersResource.class
 com\ecommerce\config\RestConfig.class
+com\ecommerce\config\Producers.class
 com\ecommerce\config\ConstraintsViolationMapper.class
 com\ecommerce\service\OrderDeliveryService.class
 com\ecommerce\dao\AddressDao.class

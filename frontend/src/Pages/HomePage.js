@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import data from "../data";
+import { listProducts } from "../actions/productActions";
 
 function HomePage(props) {
-  return (
+  const productList = useSelector((state) => state.productList);
+  const { products, loading, error } = productList;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(listProducts());
+    return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return loading ? (
+    <div>Loading...</div>
+  ) : error ? (
+    <div>{error}</div>
+  ) : (
     <ul className="products">
-      {data.products.map(product => (
-        <li>
+      {products.map((product) => (
+        <li key={product.id}>
           <div className="product">
-            <Link to={"/product/" + product._id}>
+            <Link to={"/product/" + product.id}>
               <img
                 className="product-image"
                 src="/images/d1.jpg"
@@ -16,7 +31,7 @@ function HomePage(props) {
               />
             </Link>
             <div className="product-name">
-              <Link to={"/product/" + product._id}>{product.name}</Link>
+              <Link to={"/product/" + product.id}>{product.name}</Link>
             </div>
             <div className="product-brand">{product.brand}</div>
             <div className="product-price">${product.price}</div>

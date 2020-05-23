@@ -65,6 +65,10 @@ public class Product extends AbstractEntity {
     @Basic(optional = false)
     @Column(name="NUM_REVIEWS", nullable = false)
     private int numReviews;
+    
+    @Basic(optional = false)
+    @Column(name="COUNT_IN_STOCK", nullable = false)
+    private int countInStock;
       
     @NotNull
     @JoinColumn(name="SUPPLIER_ID", nullable=false)
