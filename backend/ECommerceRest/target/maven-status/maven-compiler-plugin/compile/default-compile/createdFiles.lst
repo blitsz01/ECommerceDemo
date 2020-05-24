@@ -46,6 +46,7 @@ com\ecommerce\config\RestConfig.class
 com\ecommerce\config\Producers.class
 com\ecommerce\config\ConstraintsViolationMapper.class
 com\ecommerce\service\OrderDeliveryService.class
+com\ecommerce\util\UserInfo.class
 com\ecommerce\dao\AddressDao.class
 com\ecommerce\util\SecurityUtil.class
 com\ecommerce\service\SupplierService.class

@@ -19,10 +19,10 @@ import lombok.Data;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = Product.SEARCH, query = "SELECT p FROM Product p WHERE LOWER(p.name) LIKE CONCAT( '%',:queryterm, '%') OR LOWER(p.productCategory) LIKE CONCAT( '%', :queryterm, '%') OR LOWER(p.brand) LIKE CONCAT( '%', :queryterm, '%') ORDER BY p.name"),
-    @NamedQuery(name = Product.FIND_ALL, query = "SELECT p from Product p"),
-    @NamedQuery(name = Product.FIND_BY_CATEGORY, query = "SELECT p FROM Product p WHERE p.productCategory = :queryterm"),
-    @NamedQuery(name = Product.FIND_BY_SUPPLIER, query = "SELECT p from Product p WHERE p.supplier.id = :supplierId")
+    @NamedQuery(name = Product.SEARCH, query = "SELECT p FROM Product p WHERE p.deleteFlag = FALSE AND (LOWER(p.name) LIKE CONCAT( '%',:queryterm, '%') OR LOWER(p.productCategory) LIKE CONCAT( '%', :queryterm, '%') OR LOWER(p.brand) LIKE CONCAT( '%', :queryterm, '%')) ORDER BY p.name"),
+    @NamedQuery(name = Product.FIND_ALL, query = "SELECT p from Product p WHERE p.deleteFlag = FALSE"),
+    @NamedQuery(name = Product.FIND_BY_CATEGORY, query = "SELECT p FROM Product p WHERE p.deleteFlag = FALSE AND p.productCategory = :queryterm"),
+    @NamedQuery(name = Product.FIND_BY_SUPPLIER, query = "SELECT p from Product p WHERE p.deleteFlag = FALSE AND p.supplier.id = :supplierId")
 })
 @Table(name = "PRODUCT")
 @Data
