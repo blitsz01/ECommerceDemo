@@ -5,6 +5,7 @@ import { createOrder } from "../actions/orderActions";
 import CheckoutSteps from "../components/CheckoutSteps";
 function PlaceOrderPage(props) {
   const cart = useSelector((state) => state.cart);
+  const customer = useSelector((state) => state.userSignin);
   const orderCreate = useSelector((state) => state.orderCreate);
   const { loading, success, error, order } = orderCreate;
 
@@ -27,7 +28,8 @@ function PlaceOrderPage(props) {
       createOrder({
         orderItems: cartItems,
         shipping,
-        payment,
+        userInfo: customer.userInfo,
+        payment: payment.paymentMethod,
         itemsPrice,
         shippingPrice,
         taxPrice,
@@ -37,7 +39,7 @@ function PlaceOrderPage(props) {
   };
   useEffect(() => {
     if (success) {
-      props.history.push("/order/" + order._id);
+      props.history.push("/orderNotifications");
     }
   }, [success]);
 

@@ -60,6 +60,7 @@ button {
   font-size: 3rem;
   font-weight: bold;
   text-decoration: none;
+  margin-left: 4rem;
 }
 .header-links a {
   color: #ffffff;
@@ -98,6 +99,7 @@ a:hover {
   width: 100%;
   text-align: center;
 }
+
 .products li {
   list-style-type: none;
   padding: 1rem;
@@ -142,6 +144,11 @@ a:hover {
   padding-bottom: 0.6rem;
   font-size: 1.5rem;
 }
+
+.product-details {
+  padding-bottom: 0.6rem;
+  font-size: 1.5rem;
+}
 /* Sidebar */
 
 .brand button {
@@ -180,6 +187,7 @@ a:hover {
 }
 
 /* Product Details */
+
 .details {
   display: flex;
   justify-content: space-between;
@@ -196,6 +204,11 @@ a:hover {
 }
 .details-info {
   flex: 1 1 30rem;
+  padding: 1rem;
+  height: 60rem;
+  border-bottom: 0.1rem #c0c0c0 solid;
+  font-family: arial;
+  background-color: #f4fafc;
 }
 .details-action {
   flex: 1 1 30rem;
@@ -445,6 +458,7 @@ tbody > tr:nth-child(odd) {
 .dropdown {
   display: inline-block;
   position: relative;
+  z-index: 9999;
 }
 .dropdown-content {
   position: absolute;
@@ -496,16 +510,16 @@ tbody > tr:nth-child(odd) {
 /* loader */
 
 .loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
+  border: 0.5rem solid #f3f3f3; /* Light grey */
+  border-top: 0.5rem solid #3498db; /* Blue */
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 2.5rem;
+  height: 2.5rem;
   animation: spin 2s linear infinite;
   position: absolute;
   left: 0;
   top: 40%;
-  left: 45%;
+  left: 47%;
 }
 
 @keyframes spin {
@@ -531,6 +545,24 @@ tbody > tr:nth-child(odd) {
   text-align: center;
 }
 
+@media (max-width: 700px) {
+  .footer {
+    display: none;
+  }
+  .brand a {
+    margin-left: 0;
+  }
+  .carousel {
+    display: none;
+  }
+  .menu-header {
+    display: none;
+  }
+  .products {
+    top: 10%;
+  }
+}
+
 .carousel-image {
   width: 95%;
 }
@@ -544,4 +576,61 @@ tbody > tr:nth-child(odd) {
 .add-button {
   font-size: 2rem;
   padding: 0 1rem;
+}
+
+/* search button*/
+.float-search-button {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  top: 60px;
+  right: 10px;
+  background-color: #f0f0f0;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 999;
+}
+
+.my-float-icon {
+  margin-top: 13px;
+  font-size: 3rem;
+  z-index: 999;
+}
+
+form.search input[type="text"] {
+  position: fixed;
+  top: 70px;
+  right: 100px;
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  width: 40%;
+  background: #f1f1f1;
+  z-index: 999;
+}
+
+.button-search-homepage {
+  position: fixed;
+  top: 70px;
+  right: 55px;
+  width: 100px;
+  padding: 10px;
+  background: #2196f3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+  z-index: 999;
+}
+
+form.search button:hover {
+  background: #0b7dda;
+}
+
+form.search::after {
+  content: "";
+  clear: both;
+  display: table;
 }

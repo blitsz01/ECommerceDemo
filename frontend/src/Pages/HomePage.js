@@ -10,12 +10,15 @@ import PictureHeader from "../components/PictureHeader";
 
 function HomePage(props) {
   const productList = useSelector((state) => state.productList);
+  const [modalVisible, setModalVisible] = useState(false);
   const [prodCount, setProdCount] = useState(0);
   const { products, loading, error } = productList;
   const dispatch = useDispatch();
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     dispatch(listProducts());
+
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -27,12 +30,43 @@ function HomePage(props) {
     }
   };
 
+  const openModal = (supplier) => {
+    setModalVisible(true);
+  };
+
+  const searchHandler = (data) => {
+    dispatch(listProducts(data));
+    setModalVisible(false);
+  };
+
   return loading ? (
     <div className="loader"></div>
   ) : error ? (
     <div>{error}</div>
   ) : (
     <div>
+      {modalVisible ? (
+        <form className="search">
+          <input
+            type="text"
+            name="search"
+            value={search}
+            id="search"
+            onChange={(e) => setSearch(e.target.value)}
+          ></input>
+          <button
+            type="submit"
+            className="button-search-homepage"
+            onClick={() => searchHandler(search)}
+          >
+            Search
+          </button>
+        </form>
+      ) : (
+        <span className="float-search-button" onClick={() => openModal({})}>
+          <i className="fa fa-search my-float-icon"></i>
+        </span>
+      )}
       <PictureHeader />
       <ul className="products">
         {products.map((product) => (

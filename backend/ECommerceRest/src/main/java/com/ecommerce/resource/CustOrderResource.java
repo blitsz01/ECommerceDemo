@@ -3,7 +3,10 @@ package com.ecommerce.resource;
 import com.ecommerce.config.Secure;
 import com.ecommerce.entity.CustOrder;
 import com.ecommerce.service.CustOrderService;
+import com.ecommerce.util.Order;
 import java.util.List;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -25,6 +28,8 @@ public class CustOrderResource {
     @Inject
     CustOrderService custOrderService;
     
+    @Inject 
+    Logger logger;
     /**
      * Resource path = //api/v1/custOrder/new
      *
@@ -72,5 +77,19 @@ public class CustOrderResource {
     @GET
     public List<CustOrder> getCustOrderList(){
         return custOrderService.getCustOrderList();
+    }
+    
+    /**
+     * Resource path = //api/v1/custOrder/order
+     *
+     * @param custOrder
+     * @return custOrder
+     */
+    @Path("order")
+    @POST
+    public Response createCustOrder(Order order){
+        //TODO save in database
+        logger.info(order.toString());
+        return Response.ok(order).build();
     }
 }

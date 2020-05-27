@@ -32,26 +32,25 @@ function ProductPage(props) {
             <img src={product.image} alt="product"></img>
           </div>
           <div className="details-info">
-            <ul>
-              <li>
+            <ul className="product-details">
+              <li className="product-name">
                 <h4>{product.name}</h4>
               </li>
               <li>
                 <StarRating rating={product.rating} size="large" />
                 <span className="ml3 b">{product.numReviews} reviews</span>
               </li>
-              <li>
-                Price: <b>${product.price}</b>
+              <li className="product-price">
+                <b>Php {product.price}</b>
               </li>
-              <li>
-                Description:
+              <li className="product-price">Description:</li>
+              <li className="product-details">
                 <div>{product.description}</div>
               </li>
             </ul>
           </div>
           <div className="details-action">
             <ul>
-              <li>Price: {product.price}</li>
               <li>
                 Status: {product.countInStock > 0 ? "In Stock" : "Out of Stock"}
               </li>

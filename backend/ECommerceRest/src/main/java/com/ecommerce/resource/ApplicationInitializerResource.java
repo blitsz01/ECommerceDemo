@@ -60,9 +60,9 @@ public class ApplicationInitializerResource {
         
         //Initial Product
         product = new Product();
-        product.setName("Asus Rog Gaming");
+        product.setName("Acer Nitro Gaming");
         product.setDescription("Initial data");
-        product.setBrand("Asus");
+        product.setBrand("Acer");
         product.setSupplier(supplier);
         product.setProductCategory(ProductCategory.GADGETS);
         product.setCountInStock(4);

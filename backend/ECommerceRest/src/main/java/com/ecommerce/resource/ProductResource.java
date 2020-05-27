@@ -116,6 +116,23 @@ public class ProductResource {
         return Response.ok(productToSend).build();
     }
     
+    /**
+     * Resource path =  //api/v1/product/search?search
+     *
+     * @return productList
+     */
+    @Path("category")
+    @GET
+    public Response searchProductByCategory(@QueryParam("search") @NotNull String search){
+        List<Product> products= productService.searchProducts(search);
+        List<Product> productToSend = new ArrayList<>();
+        for(Product product : products){
+            product.setImage(null);
+            productToSend.add(product);
+        }
+        return Response.ok(productToSend).build();
+    }
+    
     @POST
     @Path("upload")
     @Consumes({MediaType.APPLICATION_OCTET_STREAM, "image/png", "image/jpeg", "image/jpg"})

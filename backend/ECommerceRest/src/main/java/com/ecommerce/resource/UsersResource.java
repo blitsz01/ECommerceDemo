@@ -58,8 +58,8 @@ public class UsersResource {
     @POST
     public Response createUser(@Valid ApplicationUser user) {
         userService.saveUser(user);
-        return Response.created(uriInfo.getAbsolutePathBuilder().path(user.getId().toString()).build())
-                .status(Response.Status.OK).build();
+        ApplicationUser newUser = userService.findUserByEmail(user.getEmail());
+        return Response.ok(newUser).build();
     }
 
 

@@ -6,6 +6,7 @@ import { BrowserRouter, Link, Route } from "react-router-dom";
 import "./App.css";
 import CartPage from "./pages/CartPage";
 import HomePage from "./pages/HomePage";
+import OrderNotificationPage from "./pages/OrderNotificationPage";
 import PaymentPage from "./pages/PaymentPage";
 import PlaceOrderPage from "./pages/PlaceOrderPage";
 import ProductMasterPage from "./pages/ProductMasterPage";
@@ -18,12 +19,7 @@ import SupplierMasterPage from "./pages/SupplierMasterPage";
 function App() {
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
-  const openMenu = () => {
-    document.querySelector(".sidebar").classList.add("open");
-  };
-  const closeMenu = () => {
-    document.querySelector(".sidebar").classList.remove("open");
-  };
+
   const logout = () => {
     Cookie.remove("userInfo");
     Cookie.remove("cartItems");
@@ -34,7 +30,6 @@ function App() {
       <div className="grid-container">
         <header className="header">
           <div className="brand">
-            <button onClick={openMenu}>&#9776;</button>
             <Link to="/">
               Shop-OnLine <i className="fa fa-shopping-bag"></i>
             </Link>
@@ -83,26 +78,13 @@ function App() {
             )}
           </div>
         </header>
-        <aside className="sidebar">
-          <h3>Shopping Categories</h3>
-          <button className="sidebar-close-button" onClick={closeMenu}>
-            x
-          </button>
-          <ul>
-            <li>
-              <a href="index.html">Pants</a>
-            </li>
-
-            <li>
-              <a href="index.html">Shirts</a>
-            </li>
-          </ul>
-        </aside>
         <main className="main">
           <div className="content">
+            <Route
+              path="/orderNotifications"
+              component={OrderNotificationPage}
+            />
             <Route path="/product/:id" component={ProductPage} />
-            <Route path="/products" component={ProductMasterPage} />
-            <Route path="/suppliers" component={SupplierMasterPage} />
             <Route path="/cart/:id?" component={CartPage} />
             <Route path="/signin" component={SignInPage} />
             <Route path="/register" component={RegisterPage} />
@@ -110,6 +92,14 @@ function App() {
             <Route path="/placeorder" component={PlaceOrderPage} />
             <Route path="/payment" component={PaymentPage} />
             <Route path="/" exact={true} component={HomePage} />
+            {userInfo ? (
+              <div>
+                <Route path="/products" component={ProductMasterPage} />
+                <Route path="/suppliers" component={SupplierMasterPage} />
+              </div>
+            ) : (
+              <div />
+            )}
           </div>
         </main>
         <footer className="footer">All right reserved.</footer>

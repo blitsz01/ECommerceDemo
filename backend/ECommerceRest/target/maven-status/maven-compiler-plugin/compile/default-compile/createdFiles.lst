@@ -3,6 +3,7 @@ com\ecommerce\entity\enums\DeliveryStatus.class
 com\ecommerce\resource\PaymentMethodResource.class
 com\ecommerce\config\PreMatchingServerRequestFilter.class
 com\ecommerce\resource\OrderProductsResource.class
+com\ecommerce\util\OrderItems.class
 com\ecommerce\dao\CustomerDao.class
 com\ecommerce\entity\enums\ProductCategory.class
 com\ecommerce\config\BusinessLogicViolationMapper.class
@@ -46,6 +47,7 @@ com\ecommerce\service\OrderProductsService.class
 com\ecommerce\resource\UsersResource.class
 com\ecommerce\config\RestConfig.class
 com\ecommerce\config\Producers.class
+com\ecommerce\util\Shipping.class
 com\ecommerce\config\ConstraintsViolationMapper.class
 com\ecommerce\service\OrderDeliveryService.class
 com\ecommerce\util\UserInfo.class
@@ -55,4 +57,5 @@ com\ecommerce\service\SupplierService.class
 com\ecommerce\resource\SupplierResource.class
 com\ecommerce\dao\SupplierDao.class
 com\ecommerce\entity\CustOrder.class
+com\ecommerce\util\Order.class
 com\ecommerce\entity\enums\AddressType.class

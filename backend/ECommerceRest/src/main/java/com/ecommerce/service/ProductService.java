@@ -35,5 +35,9 @@ public class ProductService extends AbstractService{
     public List<Product> searchProducts(String search) {
         return productDao.searchProducts(entityManager, search);
     }
+    
+    public List<Product> getProductsByCategory(String search){
+        return productDao.findProductsByCategory(entityManager, search);
+    }
 
 }

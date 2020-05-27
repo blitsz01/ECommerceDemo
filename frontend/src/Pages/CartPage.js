@@ -43,7 +43,7 @@ function CartPage(props) {
                   <img src={item.image} alt="product" />
                 </div>
                 <div className="cart-name">
-                  <div>
+                  <div className="product-name">
                     <Link to={"/product/" + item.product}>{item.name}</Link>
                   </div>
                   <div>
@@ -69,17 +69,16 @@ function CartPage(props) {
                     </button>
                   </div>
                 </div>
-                <div className="cart-price">Php{item.price}</div>
+                <div className="cart-price">Php {item.price}</div>
               </li>
             ))
           )}
         </ul>
       </div>
       <div className="cart-action">
-        <h3>
-          Subtotal ( {cartItems.reduce((a, c) => Number(a) + Number(c.qty), 0)}{" "}
-          items) :{cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
-        </h3>
+        Subtotal ( {cartItems.reduce((a, c) => Number(a) + Number(c.qty), 0)}
+        items ) :
+        <h3> Php {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}</h3>
         <button
           onClick={checkoutHandler}
           className="button primary full-width"
