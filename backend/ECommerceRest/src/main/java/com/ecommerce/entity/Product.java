@@ -37,9 +37,13 @@ public class Product extends AbstractEntity {
       
     @Basic(optional = false)
     @NotNull
-    @Size(max = 30)
-    @Column(name="NAME", length = 30, nullable = false)
+    @Size(max = 20)
+    @Column(name="NAME", length = 20, nullable = false)
     private String name;
+    
+    @Size(max = 250)
+    @Column(name="DESCRIPTION", length = 250)
+    private String description;
     
     @Basic(optional = false)
     @NotNull
@@ -62,8 +66,7 @@ public class Product extends AbstractEntity {
     @Column(name="RATING")
     private double rating;
     
-    @Basic(optional = false)
-    @Column(name="NUM_REVIEWS", nullable = false)
+    @Column(name="NUM_REVIEWS")
     private int numReviews;
     
     @Basic(optional = false)

@@ -26,6 +26,7 @@ C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\c
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\config\Secure.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\entity\PaymentMethod.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\entity\enums\AddressType.java
+C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\config\MultiPartFeature.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\dao\OrderDeliveryDao.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\config\LoggerProducer.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\resource\SupplierResource.java
@@ -35,6 +36,7 @@ C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\c
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\entity\enums\ProductCategory.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\config\ConstraintsViolationMapper.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\entity\Supplier.java
+C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\resource\ApplicationInitializerResource.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\resource\ProductResource.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\service\AbstractService.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\util\ApplicationState.java

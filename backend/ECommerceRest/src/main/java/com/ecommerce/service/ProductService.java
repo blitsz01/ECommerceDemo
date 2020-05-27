@@ -32,4 +32,8 @@ public class ProductService extends AbstractService{
         return productDao.findProductsBySupplier(entityManager, supplierId);
     }
 
+    public List<Product> searchProducts(String search) {
+        return productDao.searchProducts(entityManager, search);
+    }
+
 }

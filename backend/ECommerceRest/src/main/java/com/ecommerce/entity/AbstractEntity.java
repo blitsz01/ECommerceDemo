@@ -24,9 +24,7 @@ public abstract class AbstractEntity implements Serializable {
     @Column(name="UPDATED_ON")
     protected LocalDateTime updatedOn;
     
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "DELETE_FLAG", nullable = false)
+    @Column(name = "DELETE_FLAG")
     private Boolean deleteFlag;
       
     @PrePersist

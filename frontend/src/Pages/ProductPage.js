@@ -1,3 +1,4 @@
+import { StarRating } from "@thumbtack/thumbprint-react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -17,12 +18,12 @@ function ProductPage(props) {
     props.history.push("/cart/" + props.match.params.id + "?qty=" + qty);
   };
   return (
-    <div>
+    <div className="main">
       <div className="back-to-result">
         <Link to="/">Back to result</Link>
       </div>
       {loading ? (
-        <div>Loading...</div>
+        <div className="loader"></div>
       ) : error ? (
         <div>{error}</div>
       ) : (
@@ -36,7 +37,8 @@ function ProductPage(props) {
                 <h4>{product.name}</h4>
               </li>
               <li>
-                {product.rating} Stars ({product.numReviews} Reviews)
+                <StarRating rating={product.rating} size="large" />
+                <span className="ml3 b">{product.numReviews} reviews</span>
               </li>
               <li>
                 Price: <b>${product.price}</b>
@@ -54,7 +56,7 @@ function ProductPage(props) {
                 Status: {product.countInStock > 0 ? "In Stock" : "Out of Stock"}
               </li>
               <li>
-                Qty:{" "}
+                Qty:
                 <select
                   value={qty}
                   onChange={(e) => {

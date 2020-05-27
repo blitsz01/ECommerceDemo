@@ -1,8 +1,9 @@
 package com.ecommerce.entity.enums;
 
 public enum ProductCategory {
-    SHIRT,
-    PANTS,
-    ACCESSORY,
-    BAGS
+    FASHION,
+    GADGETS,
+    JEWELRY,
+    SHOES,
+    ACCESSORIES
 }
