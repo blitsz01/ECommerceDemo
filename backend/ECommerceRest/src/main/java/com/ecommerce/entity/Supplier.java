@@ -28,8 +28,7 @@ public class Supplier extends AbstractEntity{
     private static final long serialVersionUID = 1127216190144975765L;
     
     public static final String SEARCH = "Supplier.search";
-    public static final String FIND_ALL = "Supplier.findAll";
-    
+    public static final String FIND_ALL = "Supplier.findAll";   
     
     @Basic(optional = false)
     @NotEmpty(message = "Name cannot be empty")
