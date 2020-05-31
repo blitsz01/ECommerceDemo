@@ -2,13 +2,8 @@ package com.ecommerce.service;
 
 import com.ecommerce.entity.ApplicationUser;
 import com.ecommerce.util.SecurityUtil;
-import org.apache.shiro.crypto.SecureRandomNumberGenerator;
-
-import javax.annotation.sql.DataSourceDefinition;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import java.net.UnknownServiceException;
 import java.util.Map;
 
 @Stateless

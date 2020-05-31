@@ -26,7 +26,9 @@ function CartPage(props) {
   return (
     <div className="cart">
       <div className="back-to-result">
-        <Link to="/">Back to Shopping</Link>
+        <button className="button secondary" onClick={props.history.goBack}>
+          Back
+        </button>
       </div>
       <div className="cart-list">
         <ul className="cart-list-container">
@@ -69,7 +71,12 @@ function CartPage(props) {
                     </button>
                   </div>
                 </div>
-                <div className="cart-price">Php {item.price}</div>
+                <div className="cart-price">
+                  {new Intl.NumberFormat("en-PH", {
+                    style: "currency",
+                    currency: "PHP",
+                  }).format(item.price)}
+                </div>
               </li>
             ))
           )}
@@ -78,7 +85,12 @@ function CartPage(props) {
       <div className="cart-action">
         Subtotal ( {cartItems.reduce((a, c) => Number(a) + Number(c.qty), 0)}
         items ) :
-        <h3> Php {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}</h3>
+        <h3>
+          {new Intl.NumberFormat("en-PH", {
+            style: "currency",
+            currency: "PHP",
+          }).format(cartItems.reduce((a, c) => a + c.price * c.qty, 0))}
+        </h3>
         <button
           onClick={checkoutHandler}
           className="button primary full-width"

@@ -1,7 +1,6 @@
 package com.ecommerce.entity;
 
 import com.ecommerce.entity.enums.AddressType;
-import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;

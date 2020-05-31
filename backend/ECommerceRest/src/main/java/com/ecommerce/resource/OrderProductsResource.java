@@ -1,6 +1,5 @@
 package com.ecommerce.resource;
 
-import com.ecommerce.config.Secure;
 import com.ecommerce.entity.OrderProducts;
 import com.ecommerce.service.OrderProductsService;
 import java.util.List;

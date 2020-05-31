@@ -1,7 +1,6 @@
 import { StarRating } from "@thumbtack/thumbprint-react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { detailsProduct } from "../actions/productActions";
 
 function ProductPage(props) {
@@ -19,9 +18,13 @@ function ProductPage(props) {
   };
   return (
     <div className="main">
-      <div className="back-to-result">
-        <Link to="/">Back to result</Link>
-      </div>
+      {!loading && (
+        <div className="back-to-result">
+          <button className="button secondary" onClick={props.history.goBack}>
+            Back
+          </button>
+        </div>
+      )}
       {loading ? (
         <div className="loader"></div>
       ) : error ? (
@@ -37,11 +40,19 @@ function ProductPage(props) {
                 <h4>{product.name}</h4>
               </li>
               <li>
-                <StarRating rating={product.rating} size="large" />
+                <StarRating
+                  rating={!product.rating ? 0 : product.rating}
+                  size="large"
+                />
                 <span className="ml3 b">{product.numReviews} reviews</span>
               </li>
               <li className="product-price">
-                <b>Php {product.price}</b>
+                <b>
+                  {new Intl.NumberFormat("en-PH", {
+                    style: "currency",
+                    currency: "PHP",
+                  }).format(product.price)}
+                </b>
               </li>
               <li className="product-price">Description:</li>
               <li className="product-details">

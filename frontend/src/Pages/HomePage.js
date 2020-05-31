@@ -85,15 +85,23 @@ function HomePage(props) {
                   <img
                     className="product-image"
                     src={product.image}
-                    alt="No Image Available"
+                    alt="Not Found"
                   />
                 </Link>
 
                 {convertImageHandler(product.id)}
                 <div className="product-brand">{product.brand}</div>
-                <div className="product-price">${product.price}</div>
+                <div className="product-price">
+                  {new Intl.NumberFormat("en-PH", {
+                    style: "currency",
+                    currency: "PHP",
+                  }).format(product.price)}
+                </div>
                 <div className="product-rating">
-                  <StarRating rating={product.rating} size="large" />
+                  <StarRating
+                    rating={!product.rating ? 0 : product.rating}
+                    size="large"
+                  />
                   <span className="ml3 b">
                     ( {product.numReviews} reviews )
                   </span>

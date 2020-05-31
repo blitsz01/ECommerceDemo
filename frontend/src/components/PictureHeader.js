@@ -12,13 +12,25 @@ function PictureHeader(props) {
       >
         <Slider>
           <Slide index={0}>
-            <img className="carousel-image" src="/images/image-1.jpg" />
+            <img
+              className="carousel-image"
+              src="/images/image-1.jpg"
+              alt="not found"
+            />
           </Slide>
           <Slide index={1}>
-            <img className="carousel-image" src="/images/image-2.jpg" />
+            <img
+              className="carousel-image"
+              src="/images/image-2.jpg"
+              alt="not found"
+            />
           </Slide>
           <Slide index={2}>
-            <img className="carousel-image" src="/images/image-3.jpg" />
+            <img
+              className="carousel-image"
+              src="/images/image-3.jpg"
+              alt="not found"
+            />
           </Slide>
         </Slider>
       </CarouselProvider>

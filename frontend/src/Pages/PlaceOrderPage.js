@@ -7,7 +7,7 @@ function PlaceOrderPage(props) {
   const cart = useSelector((state) => state.cart);
   const customer = useSelector((state) => state.userSignin);
   const orderCreate = useSelector((state) => state.orderCreate);
-  const { loading, success, error, order } = orderCreate;
+  const { success } = orderCreate;
 
   const { cartItems, shipping, payment } = cart;
   if (!shipping.address) {
@@ -41,13 +41,6 @@ function PlaceOrderPage(props) {
         itemsPrice,
         shippingPrice,
         taxPrice,
-        /* orderItems: cartItems,
-          shipping,
-          userInfo: customer.userInfo,
-          payment: payment.paymentMethod,
-          itemsPrice,
-          shippingPrice,
-          taxPrice, */
       })
     );
   };
@@ -55,7 +48,16 @@ function PlaceOrderPage(props) {
     if (success) {
       props.history.push("/orderNotifications");
     }
+    return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [success]);
+
+  const currencyFormat = (curr) => {
+    return new Intl.NumberFormat("en-PH", {
+      style: "currency",
+      currency: "PHP",
+    }).format(curr);
+  };
 
   return (
     <div>
@@ -89,7 +91,7 @@ function PlaceOrderPage(props) {
                 cartItems.map((item) => (
                   <li key={item.productId}>
                     <div className="cart-image">
-                      <img src={item.image} alt="product" />
+                      <img src={item.image} alt="Not found" />
                     </div>
                     <div className="cart-name">
                       <div>
@@ -97,7 +99,9 @@ function PlaceOrderPage(props) {
                       </div>
                       <div>Qty: {item.qty}</div>
                     </div>
-                    <div className="cart-price">Php{item.price}</div>
+                    <div className="cart-price">
+                      {currencyFormat(item.price)}
+                    </div>
                   </li>
                 ))
               )}
@@ -119,19 +123,19 @@ function PlaceOrderPage(props) {
             </li>
             <li>
               <div>Items</div>
-              <div>Php {itemsPrice}</div>
+              <div>{currencyFormat(itemsPrice)}</div>
             </li>
             <li>
               <div>Shipping</div>
-              <div>Php {shippingPrice}</div>
+              <div>{currencyFormat(shippingPrice)}</div>
             </li>
             <li>
               <div>Tax</div>
-              <div>Php {taxPrice}</div>
+              <div>{currencyFormat(taxPrice)}</div>
             </li>
             <li>
               <div>Order Total</div>
-              <div>Php {totalPrice}</div>
+              <div>{currencyFormat(totalPrice)}</div>
             </li>
           </ul>
         </div>

@@ -37,7 +37,7 @@ function App() {
           <div className="header-links">
             {userInfo && userInfo.isAdmin && (
               <div className="dropdown">
-                <a href="#">
+                <a href="/">
                   <i className="fa fa-lock menu-header"></i> Admin
                 </a>
                 <ul className="dropdown-content">

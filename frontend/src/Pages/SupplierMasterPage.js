@@ -15,13 +15,9 @@ function SupplierMasterPage(props) {
   const [details, setDetails] = useState("");
 
   const supplierList = useSelector((state) => state.supplierList);
-  const { loading, suppliers, error } = supplierList;
+  const { suppliers } = supplierList;
   const supplierDelete = useSelector((state) => state.supplierDelete);
-  const {
-    loading: loadingDelete,
-    success: successDelete,
-    error: errorDelete,
-  } = supplierDelete;
+  const { success: successDelete } = supplierDelete;
   const [search, setSearch] = useState("");
 
   const supplierSave = useSelector((state) => state.supplierSave);
@@ -39,9 +35,8 @@ function SupplierMasterPage(props) {
       setListVisible(true);
     }
     dispatch(listSuppliers());
-    return () => {
-      //
-    };
+    return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [successSave, successDelete]);
 
   const openModal = (supplier) => {

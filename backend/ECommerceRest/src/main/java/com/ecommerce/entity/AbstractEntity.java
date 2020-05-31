@@ -3,7 +3,6 @@ package com.ecommerce.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 @MappedSuperclass

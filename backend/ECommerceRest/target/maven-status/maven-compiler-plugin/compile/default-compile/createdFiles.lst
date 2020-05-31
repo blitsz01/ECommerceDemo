@@ -15,7 +15,6 @@ com\ecommerce\service\PaymentMethodService.class
 com\ecommerce\config\SecurityFilter.class
 com\ecommerce\dao\CustOrderDao.class
 com\ecommerce\service\AbstractService.class
-com\ecommerce\config\MultiPartFeature.class
 com\ecommerce\resource\CustOrderResource.class
 com\ecommerce\resource\ApplicationInitializerResource.class
 com\ecommerce\resource\ProductResource.class

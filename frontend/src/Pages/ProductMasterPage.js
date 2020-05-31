@@ -1,6 +1,7 @@
 import "font-awesome/css/font-awesome.min.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   deleteProduct,
   listProducts,
@@ -23,15 +24,11 @@ function ProductMasterPage(props) {
   const [description, setDescription] = useState("");
   const [numReviews, setNumReviews] = useState("");
   const productList = useSelector((state) => state.productList);
-  const { loading, products, error } = productList;
+  const { products } = productList;
   const supplierList = useSelector((state) => state.supplierList);
   const { suppliers } = supplierList;
   const productDelete = useSelector((state) => state.productDelete);
-  const {
-    loading: loadingDelete,
-    success: successDelete,
-    error: errorDelete,
-  } = productDelete;
+  const { success: successDelete } = productDelete;
   const [search, setSearch] = useState("");
 
   const productSave = useSelector((state) => state.productSave);
@@ -50,9 +47,8 @@ function ProductMasterPage(props) {
     }
     dispatch(listProducts());
     dispatch(listSuppliers());
-    return () => {
-      //
-    };
+    return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [successSave, successDelete]);
 
   const openModal = (product) => {
@@ -272,8 +268,15 @@ function ProductMasterPage(props) {
                 {products.map((product) => (
                   <tr key={product.id}>
                     <td>{product.id}</td>
-                    <td>{product.name}</td>
-                    <td>Php{product.price}</td>
+                    <td>
+                      <Link to={"/product/" + product.id}>{product.name}</Link>
+                    </td>
+                    <td>
+                      {new Intl.NumberFormat("en-PH", {
+                        style: "currency",
+                        currency: "PHP",
+                      }).format(product.price)}
+                    </td>
                     <td>{product.productCategory}</td>
                     <td>{product.brand}</td>
                     <td>{product.rating}</td>

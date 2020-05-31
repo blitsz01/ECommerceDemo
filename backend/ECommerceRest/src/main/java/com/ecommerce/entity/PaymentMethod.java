@@ -7,7 +7,6 @@ package com.ecommerce.entity;
 
 import com.ecommerce.entity.enums.PaymentType;
 import java.time.LocalDate;
-import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
