@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { register } from "../actions/userActions";
+import { registerUser } from "../actions/userActions";
 
 function RegisterPage(props) {
+  const { register, handleSubmit, errors, getValues } = useForm();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,13 +28,12 @@ function RegisterPage(props) {
     // eslint-disable-next-line
   }, [userInfo]);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(register(name, email, password));
+  const submitHandler = () => {
+    dispatch(registerUser(name, email, password));
   };
   return (
     <div className="form">
-      <form onSubmit={submitHandler}>
+      <form onSubmit={handleSubmit(submitHandler)}>
         <ul className="form-container">
           <li>
             <h2>Create Account</h2>
@@ -48,7 +49,11 @@ function RegisterPage(props) {
               name="name"
               id="name"
               onChange={(e) => setName(e.target.value)}
+              ref={register({ required: "Name is required!" })}
             ></input>
+            {errors.name && (
+              <p style={{ color: "red" }}>{errors.name.message}</p>
+            )}
           </li>
           <li>
             <label htmlFor="email">Email</label>
@@ -57,6 +62,7 @@ function RegisterPage(props) {
               name="email"
               id="email"
               onChange={(e) => setEmail(e.target.value)}
+              ref={register}
             ></input>
           </li>
           <li>
@@ -66,7 +72,11 @@ function RegisterPage(props) {
               id="password"
               name="password"
               onChange={(e) => setPassword(e.target.value)}
+              ref={register({ required: "Password is required!" })}
             ></input>
+            {errors.password && (
+              <p style={{ color: "red" }}>{errors.password.message}</p>
+            )}
           </li>
           <li>
             <label htmlFor="rePassword">Re-Enter Password</label>
@@ -75,7 +85,19 @@ function RegisterPage(props) {
               id="rePassword"
               name="rePassword"
               onChange={(e) => setRePassword(e.target.value)}
+              ref={register({
+                required: "Please confirm password!",
+                validate: {
+                  matchesPreviousPassword: (value) => {
+                    const { password } = getValues();
+                    return password === value || "Passwords should match!";
+                  },
+                },
+              })}
             ></input>
+            {errors.rePassword && (
+              <p style={{ color: "red" }}>{errors.rePassword.message}</p>
+            )}
           </li>
           <li>
             <button type="submit" className="button primary">

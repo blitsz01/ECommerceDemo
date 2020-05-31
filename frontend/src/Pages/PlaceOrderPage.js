@@ -65,7 +65,7 @@ function PlaceOrderPage(props) {
       <div className="placeorder">
         <div className="placeorder-info">
           <div>
-            <h3>Shipping</h3>
+            <h3>Shipping Address</h3>
             <div>
               {cart.shipping.address}, {cart.shipping.city},
               {cart.shipping.postalCode}, {cart.shipping.country},
@@ -95,12 +95,17 @@ function PlaceOrderPage(props) {
                     </div>
                     <div className="cart-name">
                       <div>
-                        <Link to={"/product/" + item.product}>{item.name}</Link>
+                        <Link to={"/product/" + item.productId}>
+                          {item.name}
+                        </Link>
                       </div>
-                      <div>Qty: {item.qty}</div>
+                      <div>
+                        Qty: {item.qty} <b> {currencyFormat(item.price)}</b>per
+                        pcs
+                      </div>
                     </div>
                     <div className="cart-price">
-                      {currencyFormat(item.price)}
+                      {currencyFormat(item.price * item.qty)}
                     </div>
                   </li>
                 ))

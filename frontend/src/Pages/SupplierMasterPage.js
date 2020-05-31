@@ -1,5 +1,6 @@
 import "font-awesome/css/font-awesome.min.css";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteSupplier,
@@ -8,6 +9,7 @@ import {
 } from "../actions/supplierActions";
 
 function SupplierMasterPage(props) {
+  const { register, handleSubmit, errors } = useForm();
   const [modalVisible, setModalVisible] = useState(false);
   const [listVisible, setListVisible] = useState(true);
   const [id, setId] = useState("");
@@ -46,8 +48,7 @@ function SupplierMasterPage(props) {
     setName(supplier.name);
     setDetails(supplier.details);
   };
-  const submitHandler = (e) => {
-    e.preventDefault();
+  const submitHandler = () => {
     dispatch(
       saveSupplier({
         id: id,
@@ -73,7 +74,7 @@ function SupplierMasterPage(props) {
       </div>
       {modalVisible && (
         <div className="form">
-          <form onSubmit={submitHandler}>
+          <form onSubmit={handleSubmit(submitHandler)}>
             <ul className="form-container">
               <li>
                 <h2>{id ? "Update" : "Create"} Supplier</h2>
@@ -91,7 +92,11 @@ function SupplierMasterPage(props) {
                   value={name}
                   id="name"
                   onChange={(e) => setName(e.target.value)}
+                  ref={register({ required: "Name is required!" })}
                 ></input>
+                {errors.name && (
+                  <p style={{ color: "red" }}>{errors.name.message}</p>
+                )}
               </li>
               <li>
                 <label htmlFor="details">Details</label>

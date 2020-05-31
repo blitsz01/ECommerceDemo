@@ -63,6 +63,13 @@ function ProductPage(props) {
           <div className="details-action">
             <ul>
               <li>
+                Subtotal:
+                {new Intl.NumberFormat("en-PH", {
+                  style: "currency",
+                  currency: "PHP",
+                }).format(product.price * qty)}
+              </li>
+              <li>
                 Status: {product.countInStock > 0 ? "In Stock" : "Out of Stock"}
               </li>
               <li>

@@ -23,6 +23,13 @@ function CartPage(props) {
   const checkoutHandler = () => {
     props.history.push("/signin?redirect=shipping");
   };
+
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("en-PH", {
+      style: "currency",
+      currency: "PHP",
+    }).format(price);
+  };
   return (
     <div className="cart">
       <div className="back-to-result">
@@ -34,7 +41,7 @@ function CartPage(props) {
         <ul className="cart-list-container">
           <li>
             <h3>Shopping Cart</h3>
-            <div>Price</div>
+            <div>Subtotal</div>
           </li>
           {cartItems.length === 0 ? (
             <div>Cart is empty</div>
@@ -62,9 +69,10 @@ function CartPage(props) {
                         </option>
                       ))}
                     </select>
+                    <b> {formatPrice(item.price)}</b>
                     <button
                       type="button"
-                      className="button delete-btn"
+                      className="button delete-btn cart-remove"
                       onClick={() => removeFromCartHandler(item.productId)}
                     >
                       Remove
@@ -72,10 +80,7 @@ function CartPage(props) {
                   </div>
                 </div>
                 <div className="cart-price">
-                  {new Intl.NumberFormat("en-PH", {
-                    style: "currency",
-                    currency: "PHP",
-                  }).format(item.price)}
+                  {formatPrice(item.price * item.qty)}
                 </div>
               </li>
             ))
@@ -83,13 +88,10 @@ function CartPage(props) {
         </ul>
       </div>
       <div className="cart-action">
-        Subtotal ( {cartItems.reduce((a, c) => Number(a) + Number(c.qty), 0)}
+        Total Price ( {cartItems.reduce((a, c) => Number(a) + Number(c.qty), 0)}
         items ) :
         <h3>
-          {new Intl.NumberFormat("en-PH", {
-            style: "currency",
-            currency: "PHP",
-          }).format(cartItems.reduce((a, c) => a + c.price * c.qty, 0))}
+          {formatPrice(cartItems.reduce((a, c) => a + c.price * c.qty, 0))}
         </h3>
         <button
           onClick={checkoutHandler}

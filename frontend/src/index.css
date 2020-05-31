@@ -21,6 +21,9 @@ button {
   color: #ffffff;
   background-color: #8d080e;
 }
+.cart-remove {
+  float: right;
+}
 .edit-btn {
   display: inline-block;
   text-align: center;
@@ -519,7 +522,7 @@ tbody > tr:nth-child(odd) {
   position: absolute;
   left: 0;
   top: 40%;
-  left: 48%;
+  left: 49%;
 }
 
 @keyframes spin {

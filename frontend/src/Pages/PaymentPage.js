@@ -25,30 +25,36 @@ function PaymentPage(props) {
 
             <li>
               <div>
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  id="paymentMethod"
-                  value="CREDITCARD"
-                  onChange={(e) => setPaymentMethod(e.target.value)}
-                ></input>
-                <label htmlFor="paymentMethod">Credit Card</label>
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  id="paymentMethod"
-                  value="PAYPAL"
-                  onChange={(e) => setPaymentMethod(e.target.value)}
-                ></input>
-                <label htmlFor="paymentMethod">Paypal</label>
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  id="paymentMethod"
-                  value="CASH"
-                  onChange={(e) => setPaymentMethod(e.target.value)}
-                ></input>
-                <label htmlFor="paymentMethod">Cash on delivery</label>
+                <p>
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    id="paymentMethod"
+                    value="CREDITCARD"
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  ></input>
+                  <label htmlFor="paymentMethod">Credit Card</label>
+                </p>
+                <p>
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    id="paymentMethod"
+                    value="PAYPAL"
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  ></input>
+                  <label htmlFor="paymentMethod">Paypal</label>
+                </p>
+                <p>
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    id="paymentMethod"
+                    value="CASH"
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  ></input>
+                  <label htmlFor="paymentMethod">Cash on delivery</label>
+                </p>
               </div>
             </li>
 

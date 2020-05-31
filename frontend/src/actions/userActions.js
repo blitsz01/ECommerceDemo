@@ -27,7 +27,7 @@ const signin = (email, password) => async (dispatch) => {
   }
 };
 
-const register = (name, email, password) => async (dispatch) => {
+const registerUser = (name, email, password) => async (dispatch) => {
   dispatch({ type: USER_REGISTER_REQUEST, payload: { name, email, password } });
   try {
     const { data } = await axios.post("/ECommerceRest/api/v1/user/new", {
@@ -44,4 +44,4 @@ const register = (name, email, password) => async (dispatch) => {
   }
 };
 
-export { signin, register };
+export { signin, registerUser };

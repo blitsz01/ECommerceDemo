@@ -1,5 +1,6 @@
 import "font-awesome/css/font-awesome.min.css";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -10,6 +11,7 @@ import {
 import { listSuppliers } from "../actions/supplierActions";
 
 function ProductMasterPage(props) {
+  const { register, handleSubmit, errors } = useForm();
   const [modalVisible, setModalVisible] = useState(false);
   const [listVisible, setListVisible] = useState(true);
   const [id, setId] = useState("");
@@ -65,8 +67,7 @@ function ProductMasterPage(props) {
     setNumReviews(product.numReviews);
     if (product.supplier) setSupplierName(product.supplier.name);
   };
-  const submitHandler = (e) => {
-    e.preventDefault();
+  const submitHandler = () => {
     dispatch(
       saveProduct({
         id: id,
@@ -108,7 +109,7 @@ function ProductMasterPage(props) {
       </div>
       {modalVisible && (
         <div className="form">
-          <form onSubmit={submitHandler}>
+          <form onSubmit={handleSubmit(submitHandler)}>
             <ul className="form-container">
               <li>
                 <h2> {id ? "Update" : "Create"} Product</h2>
@@ -146,7 +147,11 @@ function ProductMasterPage(props) {
                   value={name}
                   id="name"
                   onChange={(e) => setName(e.target.value)}
+                  ref={register({ required: "Name is required!" })}
                 ></input>
+                {errors.name && (
+                  <p style={{ color: "red" }}>{errors.name.message}</p>
+                )}
               </li>
               <li>
                 <label htmlFor="price">Price in Peso</label>
@@ -156,7 +161,11 @@ function ProductMasterPage(props) {
                   value={price}
                   id="price"
                   onChange={(e) => setPrice(e.target.value)}
+                  ref={register({ required: "Price is required!" })}
                 ></input>
+                {errors.price && (
+                  <p style={{ color: "red" }}>{errors.price.message}</p>
+                )}
               </li>
               <li>
                 <label htmlFor="image">Image</label>
@@ -174,7 +183,11 @@ function ProductMasterPage(props) {
                   value={brand}
                   id="brand"
                   onChange={(e) => setBrand(e.target.value)}
+                  ref={register({ required: "Brand is required!" })}
                 ></input>
+                {errors.brand && (
+                  <p style={{ color: "red" }}>{errors.brand.message}</p>
+                )}
               </li>
               <li>
                 <label htmlFor="countInStock">CountInStock</label>
