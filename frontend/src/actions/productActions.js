@@ -22,11 +22,11 @@ const listProducts = (search) => async (dispatch) => {
     dispatch({ type: PRODUCT_LIST_REQUEST });
     if (search) {
       const { data } = await axios.get(
-        "/api/v1/product/search?search=" + search
+        "/ECommerceRest/api/v1/product/search?search=" + search
       );
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     } else {
-      const { data } = await axios.get("/api/v1/product/list");
+      const { data } = await axios.get("/ECommerceRest/api/v1/product/list");
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     }
   } catch (error) {
@@ -37,7 +37,7 @@ const listProducts = (search) => async (dispatch) => {
 const listUpdateImageProducts = (products, id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_IMAGE_REQUEST });
-    axios.get("/api/v1/product/download?id=" + id).then((res) => {
+    axios.get("/ECommerceRest/api/v1/product/download?id=" + id).then((res) => {
       const updatedList = [];
       for (const product of products) {
         if (product.id === id) {
@@ -55,11 +55,13 @@ const listUpdateImageProducts = (products, id) => async (dispatch) => {
 const detailsProduct = (productId) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST, payload: productId });
-    axios.get("/api/v1/product/" + productId).then((res) => {
-      axios.get("/api/v1/product/download?id=" + productId).then((img) => {
-        res.data.image = img.data;
-        dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: res.data });
-      });
+    axios.get("/ECommerceRest/api/v1/product/" + productId).then((res) => {
+      axios
+        .get("/ECommerceRest/api/v1/product/download?id=" + productId)
+        .then((img) => {
+          res.data.image = img.data;
+          dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: res.data });
+        });
     });
   } catch (error) {
     dispatch({ type: PRODUCT_DETAILS_FAIL, payload: error.message });
@@ -76,17 +78,28 @@ const saveProduct = (product) => async (dispatch, getState) => {
     if (!product.id) {
       product.image = null;
 
-      axios.post("/api/v1/product/new", product).then((res) => {
-        const retData = res.data;
-        axios.post("/api/v1/product/upload?id=" + retData.id, imageRead, {
+      axios
+        .post("/ECommerceRest/api/v1/product/new", product, {
           headers: {
-            "Content-Type": "application/octet-stream",
+            Authorization: "Bearer " + userInfo.token,
           },
+        })
+        .then((res) => {
+          const retData = res.data;
+          axios.post(
+            "/ECommerceRest/api/v1/product/upload?id=" + retData.id,
+            imageRead,
+            {
+              headers: {
+                "Content-Type": "application/octet-stream",
+                Authorization: "Bearer " + userInfo.token,
+              },
+            }
+          );
+          dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: retData });
         });
-        dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: retData });
-      });
     } else {
-      axios.get("/api/v1/product/" + product.id).then((res) => {
+      axios.get("/ECommerceRest/api/v1/product/" + product.id).then((res) => {
         const retData = res.data;
         retData.name = product.name;
         retData.price = product.price;
@@ -95,29 +108,40 @@ const saveProduct = (product) => async (dispatch, getState) => {
         retData.countInStock = product.countInStock;
         retData.numReviews = product.numReviews;
         retData.description = product.description;
-        axios.put("/api/v1/product/update", retData).then((data) => {
-          if (imageRead) {
-            axios
-              .post("/api/v1/product/upload?id=" + product.id, imageRead, {
-                headers: {
-                  "Content-Type": "application/octet-stream",
-                },
-              })
-              .then(() => {
-                console.log("update");
-                retData.image = imageRead;
-                dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: retData });
-              });
-          } else {
-            axios
-              .get("/api/v1/product/download?id=" + product.id)
-              .then((img) => {
-                console.log("normal");
-                retData.image = img.data;
-                dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: retData });
-              });
-          }
-        });
+        axios
+          .put("/ECommerceRest/api/v1/product/update", retData, {
+            headers: {
+              Authorization: "Bearer " + userInfo.token,
+            },
+          })
+          .then((data) => {
+            if (imageRead) {
+              axios
+                .post(
+                  "/ECommerceRest/api/v1/product/upload?id=" + product.id,
+                  imageRead,
+                  {
+                    headers: {
+                      "Content-Type": "application/octet-stream",
+                      Authorization: "Bearer " + userInfo.token,
+                    },
+                  }
+                )
+                .then(() => {
+                  console.log("update");
+                  retData.image = imageRead;
+                  dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: retData });
+                });
+            } else {
+              axios
+                .get("/ECommerceRest/api/v1/product/download?id=" + product.id)
+                .then((img) => {
+                  console.log("normal");
+                  retData.image = img.data;
+                  dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: retData });
+                });
+            }
+          });
       });
     }
   } catch (error) {
@@ -131,10 +155,18 @@ const deleteProduct = (productId) => async (dispatch, getState) => {
       userSignin: { userInfo },
     } = getState();
     dispatch({ type: PRODUCT_DELETE_REQUEST, payload: productId });
-    axios.get("/api/v1/product/" + productId).then((res) => {
+    axios.get("/ECommerceRest/api/v1/product/" + productId).then((res) => {
       const retData = res.data;
       retData.deleteFlag = true;
-      const { data } = axios.put("/api/v1/product/update", retData);
+      const { data } = axios.put(
+        "/ECommerceRest/api/v1/product/update",
+        retData,
+        {
+          headers: {
+            Authorization: "Bearer " + userInfo.token,
+          },
+        }
+      );
       dispatch({ type: PRODUCT_DELETE_SUCCESS, payload: data, success: true });
     });
   } catch (error) {

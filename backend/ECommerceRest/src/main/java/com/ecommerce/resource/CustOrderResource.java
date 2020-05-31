@@ -3,9 +3,7 @@ package com.ecommerce.resource;
 import com.ecommerce.config.Secure;
 import com.ecommerce.entity.CustOrder;
 import com.ecommerce.service.CustOrderService;
-import com.ecommerce.util.Order;
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -38,6 +36,7 @@ public class CustOrderResource {
      */
     @Path("new")
     @POST
+    @Secure
     public Response createCustOrder(CustOrder custOrder){
         custOrderService.createCustOrder(custOrder);
         return Response.ok(custOrder).build();
@@ -51,6 +50,7 @@ public class CustOrderResource {
      */
     @Path("update")
     @PUT
+    @Secure
     public Response updateCustOrder(CustOrder custOrder){
         custOrderService.updateCustOrder(custOrder);
         return Response.ok(custOrder).build();
@@ -64,6 +64,7 @@ public class CustOrderResource {
      */
     @Path("{id}")
     @GET
+    @Secure
     public CustOrder getCustOrderList(@PathParam("id") Long id){
         return custOrderService.findCustOrderById(id);
     }
@@ -75,6 +76,7 @@ public class CustOrderResource {
      */
     @Path("list")
     @GET
+    @Secure
     public List<CustOrder> getCustOrderList(){
         return custOrderService.getCustOrderList();
     }
@@ -82,14 +84,16 @@ public class CustOrderResource {
     /**
      * Resource path = //api/v1/custOrder/order
      *
-     * @param custOrder
+     * @param order
      * @return custOrder
      */
     @Path("order")
     @POST
-    public Response createCustOrder(Order order){
-        //TODO save in database
-        logger.info(order.toString());
-        return Response.ok(order).build();
+    @Secure
+    public Response createOrder(CustOrder custOrder){
+       
+        custOrderService.createOrder(custOrder);
+        
+        return Response.ok(custOrder).build();
     }
 }

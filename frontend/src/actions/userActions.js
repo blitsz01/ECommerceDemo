@@ -16,7 +16,10 @@ const signin = (email, password) => async (dispatch) => {
     params.append("email", email);
     params.append("password", password);
 
-    const { data } = await axios.post("/api/v1/user/login", params);
+    const { data } = await axios.post(
+      "/ECommerceRest/api/v1/user/login",
+      params
+    );
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
     Cookie.set("userInfo", JSON.stringify(data));
   } catch (error) {
@@ -27,7 +30,7 @@ const signin = (email, password) => async (dispatch) => {
 const register = (name, email, password) => async (dispatch) => {
   dispatch({ type: USER_REGISTER_REQUEST, payload: { name, email, password } });
   try {
-    const { data } = await axios.post("/api/v1/user/new", {
+    const { data } = await axios.post("/ECommerceRest/api/v1/user/new", {
       name,
       isAdmin: false,
       email,

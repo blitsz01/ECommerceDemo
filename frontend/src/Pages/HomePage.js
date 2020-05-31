@@ -85,7 +85,7 @@ function HomePage(props) {
                   <img
                     className="product-image"
                     src={product.image}
-                    alt="product"
+                    alt="No Image Available"
                   />
                 </Link>
 

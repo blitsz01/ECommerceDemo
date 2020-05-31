@@ -12,16 +12,12 @@ C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\c
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\entity\OrderDelivery.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\entity\ApplicationUser.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\config\BusinessLogicException.java
-C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\util\Shipping.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\config\Producers.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\config\RestConfig.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\service\CustOrderService.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\resource\OrderProductsResource.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\config\SecurityFilter.java
-C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\entity\Customer.java
-C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\service\CustomerService.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\config\PreMatchingServerRequestFilter.java
-C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\dao\CustomerDao.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\entity\enums\OrderStatus.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\config\SecurityExceptionMapper.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\config\Secure.java
@@ -32,6 +28,7 @@ C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\c
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\config\LoggerProducer.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\resource\SupplierResource.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\resource\CustOrderResource.java
+C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\config\CorsFilter.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\resource\AddressResource.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\entity\enums\DeliveryStatus.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\entity\enums\ProductCategory.java
@@ -46,7 +43,6 @@ C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\c
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\dao\ProductDao.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\service\OrderDeliveryService.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\service\PaymentMethodService.java
-C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\util\Order.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\dao\AddressDao.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\util\SecurityUtil.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\service\OrderProductsService.java
@@ -54,7 +50,5 @@ C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\c
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\service\ProductService.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\dao\CustOrderDao.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\resource\UsersResource.java
-C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\util\OrderItems.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\entity\Product.java
 C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\dao\SupplierDao.java
-C:\Users\Developer\Documents\ECommerceDemo\backend\ECommerceRest\src\main\java\com\ecommerce\resource\CustomerResource.java

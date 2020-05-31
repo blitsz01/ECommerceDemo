@@ -40,6 +40,7 @@ public class SupplierResource {
      */
     @Path("new")
     @POST
+    @Secure
     public Response createSupplier(Supplier supplier){
         supplierService.createSupplier(supplier);
         return Response.ok(supplier).build();
@@ -53,6 +54,7 @@ public class SupplierResource {
      */
     @Path("update")
     @PUT
+    @Secure
     public Response updateSupplier(Supplier supplier){
         supplierService.updateSupplier(supplier);
         return Response.ok(supplier).build();
@@ -67,6 +69,7 @@ public class SupplierResource {
      */
     @Path("{id}")
     @GET
+    @Secure
     public Response getSupplier(@PathParam("id") Long id){
         Supplier supplier = new Supplier();
  
@@ -91,6 +94,7 @@ public class SupplierResource {
      */
     @Path("list")
     @GET
+    @Secure
     public List<Supplier> getSuppliers(){
         return supplierService.getSuppliers();
     }
@@ -103,6 +107,7 @@ public class SupplierResource {
      */
     @Path("search")
     @GET
+    @Secure
     public List<Supplier> searchSuppliers(@QueryParam("search") String search){
         return supplierService.searchSupplierList(search);
     }

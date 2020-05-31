@@ -1,5 +1,6 @@
 package com.ecommerce.resource;
 
+import com.ecommerce.config.Secure;
 import com.ecommerce.entity.Product;
 import com.ecommerce.service.ProductService;
 import java.io.File;
@@ -43,6 +44,7 @@ public class ProductResource {
      */
     @Path("new")
     @POST
+    @Secure
     public Response createProduct(Product product){
         productService.createProduct(product);
         return Response.ok(product).build();
@@ -56,6 +58,7 @@ public class ProductResource {
      */
     @Path("update")
     @PUT
+    @Secure
     public Response updateProduct(Product product){
         Product productCurrent = new Product();
         productCurrent = productService.findProductById(product.getId());
@@ -137,6 +140,7 @@ public class ProductResource {
     @Path("upload")
     @Consumes({MediaType.APPLICATION_OCTET_STREAM, "image/png", "image/jpeg", "image/jpg"})
     @Produces(MediaType.TEXT_PLAIN)
+    @Secure
     public Response uploadImage(File picture, @QueryParam("id") @NotNull Long id) {
 
         Product product = productService.findProductById(id);

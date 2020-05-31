@@ -1,5 +1,6 @@
 package com.ecommerce.entity;
 
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -17,28 +18,27 @@ public class OrderProducts extends AbstractEntity{
     
     private static final long serialVersionUID = -8689631386945097022L;
     
+    @NotNull
+    @Column(name="ORDER_CODE")
+    private String orderCode;
+    
+    @NotNull
+    @Column(name="PRODUCT_ID")
+    private Long productId;
+        
     @Size(max = 255)
     @Column(name="COMMENTS")
     private String comments;
     
     @NotNull
-    @NotEmpty(message = "Quantity cannot be empty")
-    @Column(name="QUANTITY", nullable=false)
-    private int quantity;
+    @Column(name="QTY", nullable=false)
+    private int qty;
     
     @NotNull
-    @NotEmpty(message = "Quantity cannot be empty")
-    @Column(name="TOTAL_PRICE", nullable=false)
-    private double totalPrice;
+    @Column(name="PRICE", nullable=false)
+    private double price;
     
-    @NotNull
-    @JoinColumn(name="CUST_ORDER_ID", nullable=false)
-    @ManyToOne(optional = false)
-    private CustOrder custOrder;
-    
-    @NotNull
-    @JoinColumn(name="PRODUCT_ID", nullable=false)
-    @ManyToOne(optional = false)
-    private Product product;
-    
+    @JoinColumn(name="CUST_ORDER_ID")
+    @ManyToOne
+    private CustOrder custOrder;    
 }

@@ -11,14 +11,28 @@ import {
   SUPPLIER_SAVE_SUCCESS,
 } from "../constants/supplierConstants";
 
-const listSuppliers = (search) => async (dispatch) => {
+const listSuppliers = (search) => async (dispatch, getState) => {
   try {
     dispatch({ type: SUPPLIER_LIST_REQUEST });
+    const {
+      userSignin: { userInfo },
+    } = getState();
     if (search) {
-      const { data } = await axios.get("/api/v1/supplier/search/" + search);
+      const { data } = await axios.get(
+        "/ECommerceRest/api/v1/supplier/search/" + search,
+        {
+          headers: {
+            Authorization: "Bearer " + userInfo.token,
+          },
+        }
+      );
       dispatch({ type: SUPPLIER_LIST_SUCCESS, payload: data });
     } else {
-      const { data } = await axios.get("/api/v1/supplier/list");
+      const { data } = await axios.get("/ECommerceRest/api/v1/supplier/list", {
+        headers: {
+          Authorization: "Bearer " + userInfo.token,
+        },
+      });
       dispatch({ type: SUPPLIER_LIST_SUCCESS, payload: data });
     }
   } catch (error) {
@@ -29,12 +43,33 @@ const listSuppliers = (search) => async (dispatch) => {
 const deleteSupplier = (supplierId) => async (dispatch, getState) => {
   try {
     dispatch({ type: SUPPLIER_DELETE_REQUEST, payload: supplierId });
-    axios.get("/api/v1/supplier/" + supplierId).then((res) => {
-      const retData = res.data;
-      retData.deleteFlag = true;
-      const { data } = axios.put("/api/v1/supplier/update", retData);
-      dispatch({ type: SUPPLIER_DELETE_SUCCESS, payload: data, success: true });
-    });
+    const {
+      userSignin: { userInfo },
+    } = getState();
+    axios
+      .get("/ECommerceRest/api/v1/supplier/" + supplierId, {
+        headers: {
+          Authorization: "Bearer " + userInfo.token,
+        },
+      })
+      .then((res) => {
+        const retData = res.data;
+        retData.deleteFlag = true;
+        const { data } = axios.put(
+          "/ECommerceRest/api/v1/supplier/update",
+          retData,
+          {
+            headers: {
+              Authorization: "Bearer " + userInfo.token,
+            },
+          }
+        );
+        dispatch({
+          type: SUPPLIER_DELETE_SUCCESS,
+          payload: data,
+          success: true,
+        });
+      });
   } catch (error) {
     dispatch({ type: SUPPLIER_DELETE_FAIL, payload: error.message });
   }
@@ -43,15 +78,30 @@ const deleteSupplier = (supplierId) => async (dispatch, getState) => {
 const saveSupplier = (supplier) => async (dispatch, getState) => {
   try {
     dispatch({ type: SUPPLIER_SAVE_REQUEST, payload: supplier });
+    const {
+      userSignin: { userInfo },
+    } = getState();
     if (!supplier.id) {
-      axios.post("/api/v1/supplier/new", supplier).then((res) => {
-        const retData = res.data;
-        dispatch({ type: SUPPLIER_SAVE_SUCCESS, payload: retData });
-      });
+      axios
+        .post("/ECommerceRest/api/v1/supplier/new", supplier, {
+          headers: {
+            Authorization: "Bearer " + userInfo.token,
+          },
+        })
+        .then((res) => {
+          const retData = res.data;
+          dispatch({ type: SUPPLIER_SAVE_SUCCESS, payload: retData });
+        });
     } else {
-      axios.put("/api/v1/supplier/update", supplier).then((data) => {
-        dispatch({ type: SUPPLIER_SAVE_SUCCESS, payload: data });
-      });
+      axios
+        .put("/ECommerceRest/api/v1/supplier/update", supplier, {
+          headers: {
+            Authorization: "Bearer " + userInfo.token,
+          },
+        })
+        .then((data) => {
+          dispatch({ type: SUPPLIER_SAVE_SUCCESS, payload: data });
+        });
     }
   } catch (error) {
     dispatch({ type: SUPPLIER_SAVE_FAIL, payload: error.message });

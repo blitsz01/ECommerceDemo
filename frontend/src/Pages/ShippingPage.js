@@ -4,6 +4,7 @@ import { saveShipping } from "../actions/cartActions";
 import CheckoutSteps from "../components/CheckoutSteps";
 
 function ShippingPage(props) {
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [postalCode, setPostalCode] = useState("");
@@ -13,7 +14,7 @@ function ShippingPage(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(saveShipping({ address, city, postalCode, country }));
+    dispatch(saveShipping({ phoneNumber, address, city, postalCode, country }));
     props.history.push("payment");
   };
   return (
@@ -25,7 +26,15 @@ function ShippingPage(props) {
             <li>
               <h2>Shipping</h2>
             </li>
-
+            <li>
+              <label htmlFor="phoneNumber">Phone Number</label>
+              <input
+                type="text"
+                name="phoneNumber"
+                id="phoneNumber"
+                onChange={(e) => setPhoneNumber(e.target.value)}
+              ></input>
+            </li>
             <li>
               <label htmlFor="address">Address</label>
               <input

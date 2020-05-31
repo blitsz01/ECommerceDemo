@@ -9,20 +9,22 @@ import {
 
 const addToCart = (productId, qty) => async (dispatch, getState) => {
   try {
-    axios.get("/api/v1/product/" + productId).then((res) => {
-      axios.get("/api/v1/product/download?id=" + productId).then((img) => {
-        dispatch({
-          type: CART_ADD_ITEM,
-          payload: {
-            product: res.data.id,
-            name: res.data.name,
-            image: img.data,
-            price: res.data.price,
-            countInStock: res.data.countInStock,
-            qty,
-          },
+    axios.get("/ECommerceRest/api/v1/product/" + productId).then((res) => {
+      axios
+        .get("/ECommerceRest/api/v1/product/download?id=" + productId)
+        .then((img) => {
+          dispatch({
+            type: CART_ADD_ITEM,
+            payload: {
+              productId,
+              name: res.data.name,
+              image: img.data,
+              price: res.data.price,
+              countInStock: res.data.countInStock,
+              qty,
+            },
+          });
         });
-      });
     });
     const {
       cart: { cartItems },

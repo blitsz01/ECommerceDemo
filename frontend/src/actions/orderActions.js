@@ -14,7 +14,11 @@ const createOrder = (order) => async (dispatch, getState) => {
     } = getState();
     const {
       data: { data: newOrder },
-    } = await axios.post("/api/v1/custOrder/order", order);
+    } = await axios.post("/ECommerceRest/api/v1/custOrder/order", order, {
+      headers: {
+        Authorization: "Bearer " + userInfo.token,
+      },
+    });
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: newOrder });
   } catch (error) {
     dispatch({ type: ORDER_CREATE_FAIL, payload: error.message });

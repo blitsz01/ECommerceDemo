@@ -1,13 +1,14 @@
 package com.ecommerce.entity;
 
-import com.ecommerce.entity.enums.DeliveryStatus;
+import com.ecommerce.entity.enums.AddressType;
+import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
@@ -19,9 +20,13 @@ public class Address extends AbstractEntity{
 
     private static final long serialVersionUID = -1101091931023846908L;
       
+    @NotNull
+    @Column(name="ORDER_CODE")
+    private String orderCode;
+    
     @Enumerated(EnumType.STRING)
     @Column(name="ADDRESS_TYPE")
-    private DeliveryStatus addressType;
+    private AddressType addressType;
     
     @Column(name="LINE1", length = 30)
     private String line1;
@@ -44,9 +49,8 @@ public class Address extends AbstractEntity{
     @Column(name="COUNTRY", length = 30, nullable = false)
     private String country;
     
-    @NotNull
-    @JoinColumn(name="CUSTOMER_ID", nullable=false)
-    @ManyToOne(optional = false)
-    private Customer customer;
+    @OneToOne
+    @JoinColumn(name = "CUST_ORDER_ID")
+    private CustOrder custOrder;
     
 }

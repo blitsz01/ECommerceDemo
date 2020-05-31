@@ -519,7 +519,7 @@ tbody > tr:nth-child(odd) {
   position: absolute;
   left: 0;
   top: 40%;
-  left: 47%;
+  left: 48%;
 }
 
 @keyframes spin {

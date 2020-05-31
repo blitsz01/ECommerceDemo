@@ -26,14 +26,28 @@ function PlaceOrderPage(props) {
     // create an order
     dispatch(
       createOrder({
-        orderItems: cartItems,
-        shipping,
-        userInfo: customer.userInfo,
-        payment: payment.paymentMethod,
+        orderStatus: "ORDER",
+        applicationUser: { email: customer.userInfo.email },
+        paymentMethod: { paymentType: payment.paymentMethod },
+        totalPrice,
+        address: {
+          line1: shipping.address,
+          city: shipping.city,
+          postCode: shipping.postalCode,
+          country: shipping.country,
+        },
+        orderDelivery: { deliveryStatus: "PREPARING" },
+        orderProductList: cartItems,
         itemsPrice,
         shippingPrice,
         taxPrice,
-        totalPrice,
+        /* orderItems: cartItems,
+          shipping,
+          userInfo: customer.userInfo,
+          payment: payment.paymentMethod,
+          itemsPrice,
+          shippingPrice,
+          taxPrice, */
       })
     );
   };
@@ -56,6 +70,10 @@ function PlaceOrderPage(props) {
             </div>
           </div>
           <div>
+            <h3>Contact Number</h3>
+            <div>Phone Number: {cart.shipping.phoneNumber}</div>
+          </div>
+          <div>
             <h3>Payment</h3>
             <div>Payment Method: {cart.payment.paymentMethod}</div>
           </div>
@@ -69,7 +87,7 @@ function PlaceOrderPage(props) {
                 <div>Cart is empty</div>
               ) : (
                 cartItems.map((item) => (
-                  <li>
+                  <li key={item.productId}>
                     <div className="cart-image">
                       <img src={item.image} alt="product" />
                     </div>

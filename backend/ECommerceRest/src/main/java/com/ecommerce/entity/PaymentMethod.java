@@ -7,6 +7,7 @@ package com.ecommerce.entity;
 
 import com.ecommerce.entity.enums.PaymentType;
 import java.time.LocalDate;
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,6 +15,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.Data;
 
@@ -22,6 +24,10 @@ import lombok.Data;
 @Data
 public class PaymentMethod extends AbstractEntity{
     private static final long serialVersionUID = -1562951960358978248L;
+    
+    @NotNull
+    @Column(name="ORDER_CODE")
+    private String orderCode;
     
     @Enumerated(EnumType.STRING)
     @Column(name="PAYMENT_TYPE")

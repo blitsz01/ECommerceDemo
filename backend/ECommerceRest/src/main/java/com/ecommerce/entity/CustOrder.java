@@ -3,6 +3,7 @@ package com.ecommerce.entity;
 import com.ecommerce.entity.enums.OrderStatus;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,31 +35,45 @@ public class CustOrder extends AbstractEntity{
     public static final String SEARCH_BY_ORDER_DATE = "CustOrder.searchByOrderDate";
     public static final String FIND_ALL = "CustOrder.findAll";
     
+    @NotNull
+    @Column(name="ORDER_CODE")
+    private String orderCode;
+    
     @Enumerated(EnumType.STRING)
     @Column(name="ORDER_STATUS")
     private OrderStatus orderStatus;
-    
+     
     @Column(name="DATA_ORDER_PLACED")
     private LocalDateTime dateOrderPlaced;
     
     @Column(name="DATE_ORDER_PAID")
     private LocalDateTime dateOrderPaid;
     
-    @NotNull
     @Column(name="TOTAL_PRICE")
     private Double totalPrice;
     
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CUSTOMER_ID")
-    private Customer customer;
+    @Column(name="ITEMS_PRICE")
+    private Double itemsPrice;
     
-    @OneToOne(mappedBy = "custOrder", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "DELIVERY_ID")
+    @Column(name="TAX_PRICE")
+    private Double taxPrice;
+    
+    @Column(name="SHIPPING_PRICE")
+    private Double shippingPrice;
+    
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "APPLICATION_USER_ID")
+    private ApplicationUser applicationUser;
+    
+    @OneToOne(mappedBy = "custOrder", cascade = CascadeType.PERSIST)
+    private Address address;
+    
+    @OneToOne(mappedBy = "custOrder", cascade = CascadeType.PERSIST)
     private OrderDelivery orderDelivery;
     
-    @OneToOne(mappedBy = "custOrder", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "PAYMENT_METHOD_ID")
+    @OneToOne(mappedBy = "custOrder", cascade = CascadeType.PERSIST)
     private PaymentMethod paymentMethod;
+    
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "custOrder")
     private List<OrderProducts> orderProductList;
