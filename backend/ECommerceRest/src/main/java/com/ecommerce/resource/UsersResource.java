@@ -58,6 +58,8 @@ public class UsersResource {
     public Response createUser(@Valid ApplicationUser user) {
         userService.saveUser(user);
         ApplicationUser newUser = userService.findUserByEmail(user.getEmail());
+        newUser.setPassword(null);
+        newUser.setSalt(null);
         return Response.ok(newUser).build();
     }
 

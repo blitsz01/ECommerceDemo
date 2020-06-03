@@ -19,9 +19,6 @@ function RegisterPage(props) {
     ? props.location.search.split("=")[1]
     : "/";
   useEffect(() => {
-    if (userInfo) {
-      props.history.push(redirect);
-    }
     return () => {
       //
     };
@@ -30,6 +27,11 @@ function RegisterPage(props) {
 
   const submitHandler = () => {
     dispatch(registerUser(name, email, password));
+    if (userInfo && redirect === "/") {
+      props.history.push("signin");
+    } else {
+      props.history.push("signin?redirect=" + redirect);
+    }
   };
   return (
     <div className="form">

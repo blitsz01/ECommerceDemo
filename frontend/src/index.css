@@ -628,6 +628,19 @@ form.search input[type="text"] {
   z-index: 999;
 }
 
+.button-clear-homepage {
+  position: fixed;
+  top: 70px;
+  right: 150px;
+  width: 50px;
+  padding: 10px;
+  background: none;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  z-index: 999;
+}
+
 form.search button:hover {
   background: #0b7dda;
 }

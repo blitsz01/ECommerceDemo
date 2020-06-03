@@ -54,6 +54,15 @@ function HomePage(props) {
             id="search"
             onChange={(e) => setSearch(e.target.value)}
           ></input>
+          {search && (
+            <button
+              type="button"
+              className="button-clear-homepage"
+              onClick={() => setSearch("")}
+            >
+              X
+            </button>
+          )}
           <button
             type="submit"
             className="button-search-homepage"
